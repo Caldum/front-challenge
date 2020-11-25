@@ -1,0 +1,98 @@
+{
+  "name": "@n5now/ui-campaigns",
+  "version": "1.0.7",
+  "description": "N5 UI Campaigns",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watchAll",
+    "test-coverage": "jest --coverage",
+    "test-u": "jest --updateSnapshot",
+    "lint": "eslint --ext .jsx,.js src",
+    "lint-fix": "eslint --ext .jsx,.js src --fix",
+    "start": "start-storybook -p 9009 -s public",
+    "clean": "rm -rf dist",
+    "prebuild-package": "yarn clean && babel src -d dist --copy-files --no-copy-ignored",
+    "build": "yarn prebuild-package && node dist/setupPackage.js && cd dist && yarn pack"
+  },
+  "keywords": [
+    "boilerplate",
+    "ui",
+    "feature"
+  ],
+  "author": "Francisco Aboy <francisco.aboy@n5now.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
+    "@babel/preset-env": "^7.6.0",
+    "@date-io/moment": "1.x",
+    "@material-ui/core": "^4.5.0",
+    "@material-ui/icons": "^4.4.3",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/pickers": "^3.2.10",
+    "@reduxjs/toolkit": "^1.4.0",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@types/jest": "^24.0.18",
+    "axios": "^0.19.2",
+    "babel-eslint": "^10.0.3",
+    "classnames": "^2.2.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint-plugin-jest": "^22.17.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.3",
+    "moment": "^2.27.0",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-select": "^3.1.0",
+    "react-toastify": "^6.0.8",
+    "redux-observable": "^1.2.0",
+    "sass-loader": "^8.0.0",
+    "webpack": "^4.40.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-react-jsx": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.0",
+    "css-loader": "^3.2.1",
+    "enzyme-to-json": "^3.4.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
+    "style-loader": "^1.0.1",
+    "webpack-cli": "^3.3.9"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "./src/config/tests.config.js"
+    ]
+  },
+  "peerDependencies": {
+    "react-toastify": "^5.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+# Logs
+*.log
+npm-debug.log
+public
+
+# Dependency directory
+node_modules
+lib
+.babelrc
