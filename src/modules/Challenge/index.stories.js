@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react';
 import withProvider from '../withProvider';
-import Index from './Index';
+import Index from './index';
 import Categories from './Categories';
 import Top10 from './Top10';
 
