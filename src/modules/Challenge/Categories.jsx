@@ -5,9 +5,14 @@ import { connect } from 'react-redux';
 import { getCategories } from '../../store/actions';
 
 const useStyles = makeStyles({
+    grid: {
+        padding: "0 1rem"
+    },
     chipRoot: {
         borderRadius: 8,
         height: "auto",
+        marginLeft: 0,
+        marginRight: "0.6rem",
         minWidth: 50,
         padding: "3px 0"
     },
@@ -18,14 +23,14 @@ const useStyles = makeStyles({
         boxSizing: "border-box",
         color: "black",
         fontWeight: "bold",
-        margin: "0 1rem 1rem 0"
+        marginBottom: "1rem"
     },
     boxDisabled: {
         opacity: 0.5
     }
 });
 
-export function Categories({ getCategories, categories }) {
+export function Categories({ getCategories, categories, top10 }) {
     const classes = useStyles();
 
     useEffect(() => {
@@ -39,16 +44,16 @@ export function Categories({ getCategories, categories }) {
         return orderedCategories;
     }
 
-    // Items de cada categoría según el ejemplo, ya que en la respuesta de la api no se incluyen valores iguales a 0
-    const categoryItems = [29, 32, 302, 1, 0, 0];
-
     return (
-        <Grid container>
-            {!categories.length ? <CircularProgress /> :
+        <Grid container className={classes.grid}>
+            {!categories.length ?
+                <Box display="flex" width="100%" justifyContent="center">
+                    <CircularProgress />
+                </Box> :
                 orderCategories(categories).map((category, index) => (
                     <Grid item xs={6} sm={4} key={index}>
-                        <Box display="flex" alignItems="center" className={`${classes.boxRoot} ${!category.id && classes.boxDisabled}`}>
-                            <Chip label={categoryItems[index]} className={`${classes.chipRoot} ${classes.chipLabel}`} style={{ backgroundColor: category.color + "80" }} />
+                        <Box display="flex" alignItems="center" className={`${classes.boxRoot} ${!top10.filter(element => element.categoryId === category.id).length && classes.boxDisabled}`}>
+                            <Chip label={top10.filter(element => element.categoryId === category.id).length} className={`${classes.chipRoot} ${classes.chipLabel}`} style={{ backgroundColor: category.color }} />
                             <Typography variant="subtitle1">{category.name}</Typography>
                         </Box>
                     </Grid>
@@ -59,7 +64,8 @@ export function Categories({ getCategories, categories }) {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categoriesReducer.categories
+        categories: state.categoriesReducer.categories,
+        top10: state.top10Reducer.top10
     }
 }
 
