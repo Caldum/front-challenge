@@ -14,7 +14,7 @@ export default function configureAppStore(preloadedState) {
     middleware: [
       loggerMiddleware,
       epicMiddleware,
-      ...getDefaultMiddleware({ thunk: false })
+      ...getDefaultMiddleware({ thunk: true })
     ],
     preloadedState,
     enhancers: [monitorReducersEnhancer]
